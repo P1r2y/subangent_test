@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Codex 剩余额度</title>
+  <link rel="stylesheet" href="/quota.css">
+  <script src="/quota.js" defer></script>
+</head>
+<body>
+  <div id="quota-card" class="quota-card" data-status="loading">
+    <header class="drag-bar" title="拖动移动 · 右键打开菜单">
+      <svg class="drag-grip" viewBox="0 0 7 10" aria-hidden="true"><circle cx="1.5" cy="1" r="1"/><circle cx="5.5" cy="1" r="1"/><circle cx="1.5" cy="5" r="1"/><circle cx="5.5" cy="5" r="1"/><circle cx="1.5" cy="9" r="1"/><circle cx="5.5" cy="9" r="1"/></svg>
+      <span class="brand">Codex</span>
+      <button id="open-settings" class="settings-button" type="button" aria-label="打开设置" title="设置"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 3-.4 2.1-1.8 1-2-.7-2.5 4.3 1.6 1.4v2.1l-1.6 1.4 2.5 4.3 2-.7 1.8 1 .4 2.1h5l.4-2.1 1.8-1 2 .7 2.5-4.3-1.6-1.4v-2.1l1.6-1.4-2.5-4.3-2 .7-1.8-1L14.5 3Z"/><circle cx="12" cy="12.1" r="3"/></svg></button>
+    </header>
+    <main id="quota-content" class="quota-content" data-count="0" aria-label="Codex 剩余额度" aria-busy="true">
+      <div class="quota-empty"><span class="empty-label">剩余额度</span><span class="empty-value is-loading">读取中</span></div>
+    </main>
+    <p id="quota-announcement" class="sr-only" role="status" aria-live="polite" aria-atomic="true">正在读取 Codex 剩余额度。</p>
+  </div>
+</body>
+</html>

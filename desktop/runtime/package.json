@@ -1,0 +1,6 @@
+{
+  "name": "subagent-control-desktop-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": { "electron": "44.4.3" }
+}

@@ -1,0 +1,10 @@
+import { writeFileSync, existsSync } from 'node:fs';
+import { resolve, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+const root = resolve(process.argv[2] || fileURLToPath(new URL('..', import.meta.url)));
+if (!existsSync(join(root, '.codex-plugin', 'plugin.json')) || !existsSync(join(root, 'scripts', 'server.mjs'))) throw new Error('目标不是完整的 subagent-control 插件。');
+const config = { mcpServers: { 'subagent-control': { command: process.execPath, args: [join(root, 'scripts', 'server.mjs')], cwd: root, startup_timeout_sec: 15, tool_timeout_sec: 30 } } };
+writeFileSync(join(root, '.mcp.json'), JSON.stringify(config, null, 2) + '\n', 'utf8');
+const codexExecutable = process.argv[3] || process.env.SUBAGENT_CONTROL_CODEX_CLI;
+if (codexExecutable && existsSync(codexExecutable)) writeFileSync(join(root, 'desktop', 'local-runtime.json'), JSON.stringify({ codexExecutable }, null, 2) + '\n', 'utf8');
+process.stdout.write('已配置本地 MCP 启动路径：' + root + '\n');

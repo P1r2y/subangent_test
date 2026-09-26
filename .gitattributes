@@ -1,0 +1,3 @@
+# 全仓库按 LF 提交；plugin.json 由安装脚本生成（CRLF），保留原始字节不转换
+* text=auto eol=lf
+.codex-plugin/plugin.json -text

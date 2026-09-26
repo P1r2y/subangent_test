@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f3f3f3">
+  <title>设置</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/window-settings.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="control-window">
+    <header class="window-bar">
+      <div class="brand"><h1>设置</h1><span class="brand-context">Codex</span><span id="connection-dot" class="connection-dot" role="img" aria-label="正在连接本地服务" title="正在连接本地服务"></span></div>
+      <div id="window-actions" class="window-actions" aria-label="窗口控制" hidden>
+        <button id="minimize-button" class="window-button" type="button" aria-label="最小化" title="最小化"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10"/></svg></button>
+        <button id="close-button" class="window-button close-button" type="button" aria-label="关闭" title="关闭"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6 6 8 8M14 6l-8 8"/></svg></button>
+      </div>
+    </header>
+
+    <main id="main" class="content">
+      <section id="window-preferences" class="window-preferences" aria-labelledby="window-preferences-title" aria-busy="true" hidden>
+        <div class="section-heading"><h2 id="window-preferences-title">浮窗</h2><span class="section-caption">额度条</span></div>
+        <div class="setting-line"><label for="window-opacity">背景不透明度</label><output id="window-opacity-value" for="window-opacity">—</output></div>
+        <input id="window-opacity" type="range" min="50" max="100" step="5" value="80" aria-describedby="window-opacity-description" disabled>
+        <div class="range-labels" aria-hidden="true"><span>50%</span><span>100%</span></div>
+        <span id="window-opacity-description" class="sr-only">仅调整浮窗背景，文字保持不透明。</span>
+        <label class="checkbox-setting"><input id="window-always-on-top" type="checkbox" checked disabled><span>始终置顶</span></label>
+        <div id="window-preferences-message" class="inline-notice" role="status" hidden><span id="window-preferences-message-text"></span><button id="window-preferences-reload" class="text-button" type="button" hidden>加载最新</button></div>
+        <div class="window-preferences-actions"><span id="window-preferences-status" class="preference-status" role="status" aria-live="polite">正在读取</span><button id="window-preferences-reset" class="button button-secondary" type="button" disabled>撤销</button><button id="window-preferences-save" class="button button-primary" type="button" disabled>保存浮窗</button></div>
+      </section>
+
+      <div id="global-alert" class="alert" role="alert" hidden><strong id="alert-title"></strong><p id="alert-message"></p><button id="alert-action" class="text-button" type="button" hidden>重试</button></div>
+
+      <section class="plugin-power" aria-labelledby="plugin-power-title">
+        <div class="section-heading"><h2 id="plugin-power-title">插件</h2><span id="plugin-power-state" class="section-caption">已启用</span></div>
+        <label class="checkbox-setting"><input id="plugin-enabled" type="checkbox" checked disabled><span>启用插件</span></label>
+        <p class="advanced-note">停用后不路由、不校验、不读额度、不写记录。</p>
+      </section>
+
+      <section class="investment" aria-labelledby="strength-title">
+        <div class="section-heading"><h2 id="strength-title">子代理策略</h2><span id="policy-label" class="policy-label" data-state="loading">正在读取</span></div>
+        <div class="setting-line strength-setting"><label for="strength-range">综合投入</label><div class="strength-readout"><output id="strength-value" for="strength-range">—</output><span>%</span></div></div>
+        <div class="slider-controls">
+          <button id="decrease" class="step-button" type="button" aria-label="降低投入 5%" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10"/></svg></button>
+          <div class="slider-wrap"><label for="strength-range" class="sr-only">综合投入百分比，10% 至 100%，每档 5%</label><input id="strength-range" type="range" min="10" max="100" step="5" value="70" disabled><div class="range-labels" aria-hidden="true"><span>10</span><span>100</span></div></div>
+          <button id="increase" class="step-button" type="button" aria-label="提高投入 5%" disabled><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 10h10M10 5v10"/></svg></button>
+        </div>
+        <div class="quick-levels" role="group" aria-label="快捷投入档位"><button type="button" data-strength="40" disabled><strong>40%</strong><span>经济</span></button><button type="button" data-strength="70" disabled><strong>70%</strong><span>推荐</span></button><button type="button" data-strength="100" disabled><strong>100%</strong><span>充分</span></button></div>
+      </section>
+
+      <div class="visual-lock"><span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 8V5.5a3.5 3.5 0 0 1 7 0V8"/><rect x="4.5" y="8" width="11" height="9" rx="2"/><path d="M10 11.5v2"/></svg>视觉设计与验收</span><strong>Astra <span>/</span> max</strong></div>
+
+      <section id="model-summary" class="model-summary" aria-label="当前模型摘要，常规难度" aria-busy="true">
+        <div id="summary-ready" hidden><div class="model-line"><span id="implementation-label">常规开发</span><strong id="implementation-model">—</strong></div><div class="model-line"><span>机械执行</span><strong id="mechanical-model">—</strong></div></div>
+        <div id="policy-loading" class="summary-loading"><span class="loading-dot" aria-hidden="true"></span><span id="policy-loading-text">正在读取模型分配</span></div>
+        <div id="policy-error" class="preview-error" hidden><span id="policy-error-message"></span><button id="retry-policy" class="text-button" type="button">重试</button></div>
+      </section>
+
+      <details id="advanced-options" class="advanced-options">
+        <summary><span>高级选项</span><span id="preference-summary" class="preference-summary">省 Codex 额度</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5 6 3 3 3-3"/></svg></summary>
+        <div class="advanced-body">
+          <fieldset class="preference-fieldset"><legend>成本偏好</legend><div class="preference-options"><label><input type="radio" name="costPreference" value="codex_quota" checked disabled><span><strong>省 Codex 额度</strong><small><span title="DeepSeek V4.1 Flash">DeepSeek V4.1</span> 处理机械任务</small></span></label><label><input type="radio" name="costPreference" value="api_cost" disabled><span><strong>省 API 费用</strong><small>Luna 处理机械任务</small></span></label><label class="preference-deepseek"><input type="radio" name="costPreference" value="deepseek_first" disabled><span><strong>DeepSeek 优先</strong><small>规格明确的任务交给 <span title="DeepSeek V4.1 Flash">DeepSeek V4.1</span>，Sol / Astra 复核。</small><small>10–85% 优先 DeepSeek，90% 起随投入升级，100% 全 Astra。</small></span></label></div></fieldset>
+          <div class="policy-details"><div class="details-heading"><h3>策略明细</h3><span id="details-context">默认难度 3 / 5</span></div><div id="role-rows" class="role-rows"></div><p class="limits-line">并行上限 <strong id="max-parallel">—</strong><span>·</span>委派上限 <strong id="max-delegations">—</strong></p><p id="review-depth" class="review-depth"></p></div>
+          <p class="advanced-note">安全、隐私与数据迁移也固定使用 Astra / max。必要升级不受投入档位限制。</p>
+          <p class="advanced-note">投入比例不代表准确率。保存后用于后续派发，当前对话模型不变。</p>
+        </div>
+      </details>
+    </main>
+
+    <footer class="panel-footer"><div class="save-status-line"><div class="save-status"><span id="save-status-icon" class="save-status-icon is-loading" aria-hidden="true"></span><span id="save-status" role="status" aria-live="polite">正在载入设置</span></div><span id="last-saved"></span></div><div class="save-actions"><button id="reset-button" class="button button-secondary" type="button" disabled>撤销</button><button id="save-button" class="button button-primary" type="button" title="保存策略 · Ctrl+S" disabled><span id="save-button-text">保存策略</span><svg viewBox="0 0 20 20" aria-hidden="true"><path id="save-button-symbol" d="M4 10h12m-4-4 4 4-4 4"/></svg></button></div></footer>
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden><span></span></div>
+  </div>
+</body>
+</html>

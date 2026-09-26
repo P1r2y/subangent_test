@@ -1,0 +1,9 @@
+# 本机生成、含绝对路径，不入库
+.mcp.json
+desktop/local-runtime.json
+
+# 依赖与运行产物
+node_modules/
+desktop/runtime/node_modules/
+.test-data/
+*.log
