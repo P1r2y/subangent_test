@@ -1,3 +1,6 @@
+# 有bug先别用
+
+
 # Subagent Control · 子代理强度控制
 
 个人 Codex 插件，包含本地控制面板、独立 Windows 桌面浮窗、MCP 策略工具和派发技能。Node.js 20+；HTTP 与 MCP 模式保持零第三方运行时依赖，桌面浮窗模式额外需要 Electron（44.4.3），该依赖不进入前两种模式。
